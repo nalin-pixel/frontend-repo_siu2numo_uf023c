@@ -1,8 +1,9 @@
 import Spline from '@splinetool/react-spline'
+import ParallaxMarquee from './ParallaxMarquee'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[80vh] w-full overflow-hidden flex items-center">
+    <section className="relative min-h-[90vh] w-full overflow-hidden flex items-center">
       <div className="absolute inset-0">
         <Spline scene="https://prod.spline.design/LU2mWMPbF3Qi1Qxh/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
@@ -32,6 +33,10 @@ export default function Hero() {
       </div>
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white" />
+
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <ParallaxMarquee />
+      </div>
     </section>
   )
 }
