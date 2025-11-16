@@ -1,11 +1,32 @@
 import Spline from '@splinetool/react-spline'
 import ParallaxMarquee from './ParallaxMarquee'
+import MagneticButton from './MagneticButton'
 
 export default function Hero() {
+  const handleSplineClick = (e) => {
+    const name = e?.target?.name
+    if (!name) return
+    // Map named Spline objects to on-page actions
+    const map = {
+      'Hotspot-Onboard': '#onboard',
+      'Hotspot-Work': '#work',
+      'CTA-Start': '#onboard',
+      'CTA-SeeWork': '#work',
+    }
+    const hash = map[name]
+    if (hash) {
+      window.location.hash = hash
+    }
+  }
+
   return (
     <section className="relative min-h-[90vh] w-full overflow-hidden flex items-center">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/LU2mWMPbF3Qi1Qxh/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline
+          scene="https://prod.spline.design/LU2mWMPbF3Qi1Qxh/scene.splinecode"
+          style={{ width: '100%', height: '100%' }}
+          onMouseDown={handleSplineClick}
+        />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
@@ -22,12 +43,12 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#onboard" className="inline-flex items-center justify-center rounded-md bg-gray-900 px-5 py-3 text-white font-semibold shadow hover:bg-gray-800 transition-colors">
+            <MagneticButton to="#onboard" className="group">
               Start a project
-            </a>
-            <a href="#work" className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-5 py-3 text-gray-900 font-semibold hover:bg-gray-50 transition-colors">
+            </MagneticButton>
+            <MagneticButton to="#work" variant="secondary" className="group">
               See our work
-            </a>
+            </MagneticButton>
           </div>
         </div>
       </div>
